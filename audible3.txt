@@ -1,0 +1,30 @@
+
+    static int knapsack_recursion(int amount, int[] quantity, int[] cost, int maxQuant, int currentCost,
+                        int currentQuantity, int index) {
+        if (currentCost > amount) {
+
+            return maxQuant;
+        }
+
+        if (index >= quantity.length) {
+            return maxQuant;
+
+        }
+        if (currentQuantity > maxQuant) {
+            maxQuant = currentQuantity;
+        }
+
+        maxQuant = Math.max(knapsack_recursion(amount, quantity, cost, maxQuant, currentCost + cost[index], currentQuantity + quantity[index], index) , knapsack_recursion(amount, quantity, cost, maxQuant, currentCost, currentQuantity, index + 1));
+return maxQuant;
+}
+
+
+ static int budgetShopping(int n, int[] bundleQuantities, int[] bundleCosts) {
+    int max = -1;
+    
+    if(bundleQuantities.length > 50) System.out.print(bundleQuantities.length);
+     else
+        max = knapsack_recursion(n, bundleQuantities, bundleCosts, max, 0, 0, 0);
+    return max;
+}
+

@@ -1,0 +1,43 @@
+def subarraySum(arr):
+    ans = 0
+    n = len(arr)
+    for i in xrange(len(arr)):
+        ans += arr[i] * (i+1) * (n-i)
+    return ans
+	
+	
+	
+	
+	
+private static String prefixtopostfix(String prefixExp) {
+            if(prefixExp.isEmpty()){
+                return null;
+            }
+        
+        String seperator = "SEPERATOR";
+        Stack<String> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        for( char c: prefixExp.toCharArray()){
+            if(!Character.isDigit(c)) {
+                stack.push(String.valueOf(c));
+            } else {
+                sb.append(String.valueOf(c));
+                while(!stack.isEmpty() && stack.peek().equals(seperator)){
+                    stack.pop();
+                    sb.append(stack.pop());
+                }
+                stack.push(seperator);
+            }
+        } 
+        return sb.toString();
+    }
+    
+    static String[] prefixToPostfix(String[] prefixes){
+        
+        String [] output = new String[prefixes.length];
+        
+        for(int i=0; i < prefixes.length; i++) {
+            output[i] = prefixtopostfix(prefixes[i]);
+        }
+        return output;
+    } 

@@ -1,0 +1,27 @@
+void knapsack_recursion(int n, vector<int> &quantity, vector<int> &cost, int &maxQuant, int currentCost,
+                        int currentQuantity, int index) {
+    if (currentCost > n) {
+
+        return;
+    }
+
+    if (index >= quantity.size()) {
+        return;
+
+    }
+    if (currentQuantity > maxQuant) {
+        maxQuant = currentQuantity;
+    }
+
+    knapsack_recursion(n, quantity, cost, maxQuant, currentCost + cost[index], currentQuantity + quantity[index], index );
+
+    knapsack_recursion(n, quantity, cost, maxQuant, currentCost, currentQuantity, index + 1);
+
+}
+
+
+int budgetShopping(int n, vector<int> quantity, vector<int> cost) {
+    int maxValue = -1;
+    knapsack_recursion(n, quantity, cost, maxValue, 0, 0, 0);
+    return maxValue;
+}
